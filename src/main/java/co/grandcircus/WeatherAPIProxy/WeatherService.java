@@ -11,28 +11,26 @@ public class WeatherService {
 
 	private RestTemplate rt = new RestTemplate();
 	
-	public WeatherPointResponse getPointResponse(Double lat, Double lon) {
-		String url = "https://api.weather.gov/points/{0},{1}";
-		WeatherPointResponse response = rt.getForObject(url, WeatherPointResponse.class, lat, lon);
-		return response;
+	public List<Period> getPeriod(String lat, String lon){
+		String urlgp = "https://api.weather.gov/points/" + lat + "," + lon;
+		GridPropertiesResponse gpr = rt.getForObject(urlgp, GridPropertiesResponse.class);
+		
+		String urlf = gpr.getProperties().getForecast();
+		ForecastResponse fr = rt.getForObject(urlf, ForecastResponse.class);
+		
+		return fr.getProperties().getPeriods();
 	}
 	
-	public String getForecastURL(Double lat, Double lon) {
-		return getPointResponse(lat, lon).getProperties().getForcast();
-	}
-	
-	public WeatherPeriodResponse getPeriodResponse(String url) {
-		WeatherPeriodResponse response = rt.getForObject(url, WeatherPeriodResponse.class);
-		return response;
-	}
-	
-	public ProxyResopnse getProxyResponse(Double lat, Double lon) {
-		List<Period> periods = getPeriodResponse(getForecastURL(lat, lon)).getProperties().getPeriods();
-		List<ProxyPeriod> proxyPeriods = new ArrayList<>();
-		for (int i = 0; i < periods.size(); i++) {
-			proxyPeriods.add(new ProxyPeriod(periods.get(i)));
-		}
-		Stats stats = new Stats(periods);
-		return new ProxyResopnse(proxyPeriods, stats);
+	public List<ProxyPeriod> getPlusPeriod(String lat, String lon){
+		String urlgp = "https://api.weather.gov/points/" + lat + "," + lon;
+		GridPropertiesResponse gpr = rt.getForObject(urlgp, GridPropertiesResponse.class);
+		
+		String urlf = gpr.getProperties().getForecast();
+		ProxyForecast pf = rt.getForObject(urlf, ProxyForecast.class);
+		
+		List<ProxyPeriod> periods = pf.getProperties().getPeriods();
+		
+		return periods;
+		
 	}
 }

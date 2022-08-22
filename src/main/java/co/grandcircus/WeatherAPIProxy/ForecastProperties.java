@@ -2,8 +2,8 @@ package co.grandcircus.WeatherAPIProxy;
 
 import java.util.List;
 
-public class PeriodProperties {
-
+public class ForecastProperties {
+ 
 	private List<Period> periods;
 
 	public List<Period> getPeriods() {

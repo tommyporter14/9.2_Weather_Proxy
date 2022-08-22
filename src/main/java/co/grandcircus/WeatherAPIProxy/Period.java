@@ -2,19 +2,19 @@ package co.grandcircus.WeatherAPIProxy;
 
 public class Period {
 
-	protected int number;
-	protected String name;
-	protected String startTime;
-	protected String endTime;
-	protected boolean isDayTime;
-	protected int temperature;
-	protected String temperateUnit;
-	protected  Object temperatureTrend;
-	protected String windSpeed;
-	protected String windDirection;
-	protected String icon;
-	protected String shortForecast;
-	protected String detailedForecast;
+	private int number; 
+	private String name;
+	private String startTime;
+	private String endTime;
+	private boolean isDaytime;
+	private int temperature;
+	private String temperatureUnit;
+	private String temperatureTrend;
+	private String windSpeed;
+	private String windDirection;
+	private String icon;
+	private String shortForecast;
+	private String detailedForecast;
 	public int getNumber() {
 		return number;
 	}
@@ -39,11 +39,11 @@ public class Period {
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
-	public boolean isDayTime() {
-		return isDayTime;
+	public boolean isDaytime() {
+		return isDaytime;
 	}
-	public void setDayTime(boolean isDayTime) {
-		this.isDayTime = isDayTime;
+	public void setDaytime(boolean isDaytime) {
+		this.isDaytime = isDaytime;
 	}
 	public int getTemperature() {
 		return temperature;
@@ -51,16 +51,16 @@ public class Period {
 	public void setTemperature(int temperature) {
 		this.temperature = temperature;
 	}
-	public String getTemperateUnit() {
-		return temperateUnit;
+	public String getTemperatureUnit() {
+		return temperatureUnit;
 	}
-	public void setTemperateUnit(String temperateUnit) {
-		this.temperateUnit = temperateUnit;
+	public void setTemperatureUnit(String temperatureUnit) {
+		this.temperatureUnit = temperatureUnit;
 	}
-	public Object getTemperatureTrend() {
+	public String getTemperatureTrend() {
 		return temperatureTrend;
 	}
-	public void setTemperatureTrend(Object temperatureTrend) {
+	public void setTemperatureTrend(String temperatureTrend) {
 		this.temperatureTrend = temperatureTrend;
 	}
 	public String getWindSpeed() {
